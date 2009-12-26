@@ -1,12 +1,14 @@
 ; = 概要
 ;
-; るびきちさんが作成された auto-install.el のセットアップを行う。
+; るびきちさんが作成された auto-install.el を有効にする。
 ;
 ; = 参照
 ;
 ; http://www.emacswiki.org/emacs/download/auto-install.el
 ;
 ; = 使い方
+;
+; 以下のようにして使用する。(るびきちさんの文章のコピペ)
 ;
 ; * M-x install-elisp → URLを指定してインストールする
 ; * M-x install-elisp-from-emacswiki → EmacsWikiにあるEmacsLispをインストール
