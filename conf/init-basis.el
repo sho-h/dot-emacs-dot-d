@@ -113,3 +113,6 @@
 ; shebang の書かれているファイルの保存時に自動的に chmod +x する。
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
+
+; diff の確認を行う時のオプションに -u を設定。
+(setq diff-switches "-u")
