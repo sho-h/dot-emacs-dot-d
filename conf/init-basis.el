@@ -58,13 +58,14 @@
 (add-hook 'window-setup-hook
 	  (lambda () (set-frame-height (selected-frame) 48)) t)
 
-; フレームの位置を左上の端にする。
+; フレームの位置を左上の端にする。フックでやらなくても左上に移動する事
+; ができるが、フレームの高さを変更した時にミニバッファが大きくなってし
+; まうのを ad-hoc に対応している。
 ; c.f. Emacs 辞典
-(set-frame-position (selected-frame) 0 0)
-
-; TODO: 起動後にウィンドウをリサイズする時にミニバッファが大きくなって
-; しまうのをなんとかする。resize-minibuffer-mode は廃止されている事に注
-; 意。
+(add-hook 'window-setup-hook
+  (lambda ()
+    (set-frame-position (selected-frame) 1 1)
+    (set-frame-position (selected-frame) 0 0)) t)
 
 ; 起動時のメッセージを表示しない。
 (setq inhibit-startup-message t)
