@@ -30,7 +30,7 @@
 (global-set-key "\C-u" nil)
 (global-set-key "\C-u" (lambda () (interactive) (manual-entry (current-word))))
 
-; M-/ で動的略称展開の際にを強調表示する。
+; M-/ で動的略称展開の際に候補の単語を強調表示する。
 ; http://www.namazu.org/~tsuchiya/elisp/dabbrev-highlight.el
 (require 'dabbrev-highlight)
 
