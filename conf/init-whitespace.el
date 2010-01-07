@@ -30,7 +30,8 @@
   (let ((mode-hooks '(Buffer-menu-mode-hook mail-mode-hook
                                             eshell-mode-hook
                                             w3-mode-hook
-                                            mime-view-mode-hook)))
+                                            mime-view-mode-hook
+                                            diff-mode-hook)))
 
     (mapcar '(lambda (mode-hook)
                (add-hook mode-hook 'turn-off-show-trailing-whitespace))
