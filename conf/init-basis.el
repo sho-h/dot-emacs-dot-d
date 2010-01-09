@@ -116,3 +116,8 @@
 
 ; diff の確認を行う時のオプションに -u を設定。
 (setq diff-switches "-u")
+
+; rd-mode を有効にする。
+(global-font-lock-mode 1 t)
+(autoload 'rd-mode "rd-mode" "major mode for ruby document formatter RD" t)
+(add-to-list 'auto-mode-alist '("\\.rd$" . rd-mode))
