@@ -76,7 +76,8 @@ c_yoyakugo = [
 classes = ObjectSpace.each_object(Class).collect
 
 # 列挙したクラスからメソッド名や定数を列挙する。
-methods = classes.collect { |c|
+methods = []
+classes.each { |c|
   a = c.methods + c.singleton_methods + c.private_methods + c.protected_methods
   if c.respond_to?("instance_methods")
     a.concat(c.instance_methods)
@@ -84,8 +85,9 @@ methods = classes.collect { |c|
   if c.respond_to?("constants")
     a.concat(c.constants)
   end
-  a
-}.flatten.collect(&:to_s)
+  methods.concat(a)
+}
+methods = methods.collect(&:to_s)
 
 others = [
   "rb", "API", "stdin", "stdout", "stderr", "usr", "tmp", "cmd", "cmds",
@@ -93,12 +95,12 @@ others = [
   "emlist",
 ]
 
-words = [meta_variables, ruby_yoyakugo, c_yoyakugo, others]
-[libs, classes.collect(&:to_s), methods].flatten.sort.uniq.each do |m|
+words = meta_variables + ruby_yoyakugo + c_yoyakugo + others
+(libs + classes.collect(&:to_s) + methods).sort.uniq.each do |m|
   words.concat(m.gsub(/[!`@<>\?=*\-+|&~%^\/\[\]]/, "").split(/::|_|\d/))
 end
 
-words.flatten.sort.uniq.each do |s|
+words.sort.uniq.each do |s|
   puts s if s.length > 1
 end
 
