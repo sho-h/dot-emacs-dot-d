@@ -77,12 +77,7 @@ classes = ObjectSpace.each_object(Class).collect
 
 # 列挙したクラスからメソッド名や定数を列挙する。
 methods = classes.collect { |c|
-  a = [
-    c.methods,
-    c.singleton_methods,
-    c.private_methods,
-    c.protected_methods,
-  ]
+  a = c.methods + c.singleton_methods + c.private_methods + c.protected_methods
   if c.respond_to?("instance_methods")
     a.concat(c.instance_methods)
   end
