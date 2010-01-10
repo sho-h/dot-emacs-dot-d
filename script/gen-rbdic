@@ -1,0 +1,635 @@
+# -*- coding: euc-jp -*-
+#
+# = 概要
+#
+# ispell の個人用の辞書作成を行う。以下を列挙して puts する。
+#
+# * ライブラリ名
+# * クラス名
+# * メソッド名
+# * 定数名
+#
+# ただし、記号や数字などは全て split される。また 1文字しかない単語は対
+# 象から外される。
+#
+# = 使いかた
+#
+# $ ruby gen-rbdic > /path/to/dict
+#
+# 異なるバージョンの Ruby 用の辞書も必要な場合には、現状は複数回実行す
+# るしかない。
+#
+# $ (ruby1.8.7 gen-rbdic; ruby1.9.1 gen-rbdic) | sort | uniq > /path/to/dict
+#
+# deprecated なものも全て列挙するため、WARNING がいくつか表示される。
+
+# 単体テストを走らせないために先に require する。
+if RUBY_VERSION >= "1.9.1"
+  # TODO: メソッドを上書きしないでいい方法があればそちらを採用する。
+  # activesupport の修正に @@installed_at_exit を false にするようなも
+  # のがあったけど、後で require するような場合には対応できなかった。
+  require "minitest/unit"
+  class MiniTest::Unit
+    def self.autorun; end
+  end
+else
+  require "test/unit"
+  Test::Unit.run = true
+end
+
+# __END__ 以下に列挙してあるライブラリを全て require する。
+libs = []
+DATA.read.split.each do |s|
+  begin
+    libs.concat(s.split("/"))
+    require s
+  rescue LoadError
+  end
+end
+
+# foo や bar などのメタ構文変数。
+meta_variables = [
+  "foo", "bar", "baz", "qux", "quux", "corge", "grault", "garply", "waldo",
+  "fred", "plugh", "xyzzy", "thud",
+]
+
+# Ruby の予約語。defined? からは「?」を取っている。
+ruby_yoyakugo = [
+  "BEGIN", "class", "ensure", "nil", "self", "when", "END", "def",
+  "false", "not", "super", "while", "alias", "defined", "for",
+  "or", "then", "yield", "and", "do", "if", "redo", "true", "begin",
+  "else", "in", "rescue", "undef", "break", "elsif", "module",
+  "retry", "unless", "case", "end", "next", "return", "until",
+]
+
+# C 言語の予約語。
+c_yoyakugo = [
+  "auto", "const", "double", "float", "int", "short", "struct",
+  "unsigned", "break", "continue", "for", "long", "signed",
+  "switch", "void", "case", "default", "enum", "goto", "register",
+  "sizeof", "typedef", "volatile", "char", "do", "extern",
+  "return", "static", "union", "while", "define", "ifdef", "if",
+  "else", "endif", "undef",
+]
+
+# require 済みのクラスを列挙する。
+classes = ObjectSpace.each_object(Class).collect
+
+# 列挙したクラスからメソッド名や定数を列挙する。
+methods = classes.collect { |c|
+  a = [
+    c.methods,
+    c.singleton_methods,
+    c.private_methods,
+    c.protected_methods,
+  ]
+  if c.respond_to?("instance_methods")
+    a.concat(c.instance_methods)
+  end
+  if c.respond_to?("constants")
+    a.concat(c.constants)
+  end
+  a
+}.flatten.collect(&:to_s)
+
+others = [
+  "rb", "API", "stdin", "stdout", "stderr", "usr", "tmp", "cmd", "cmds",
+  "env", "SIGPIPE", "SIGTERM", "SIGEXIT", "bool", "sudo", "PostgreSQL", "wget",
+  "emlist",
+]
+
+words = [meta_variables, ruby_yoyakugo, c_yoyakugo, others]
+[libs, classes.collect(&:to_s), methods].flatten.sort.uniq.each do |m|
+  words.concat(m.gsub(/[!`@<>\?=*\-+|&~%^\/\[\]]/, "").split(/::|_|\d/))
+end
+
+words.flatten.sort.uniq.each do |s|
+  puts s if s.length > 1
+end
+
+# 以下は require するライブラリ名。追加、削除したい場合は行を追加、削除
+# する。
+__END__
+abbrev
+base64
+benchmark
+bigdecimal
+bigdecimal/jacobian
+bigdecimal/ludcmp
+bigdecimal/newton
+bigdecimal/util
+bigdecimal/math
+cgi-lib
+cgi
+cgi/session
+cgi/session/pstore
+cmath
+complex
+continuation
+coverage
+csv
+curses
+date
+date2
+dbm
+delegate
+digest
+digest/bubblebabble
+digest/md5
+digest/rmd160
+digest/sha1
+digest/sha2
+e2mmap
+enumerator
+erb
+eregex
+etc
+expect
+fcntl
+fiber
+fileutils
+final
+finalize
+find
+forwardable
+ftools
+gdbm
+generator
+getoptlong
+getopts
+gserver
+iconv
+importenv
+io/nonblock
+io/wait
+ipaddr
+irb
+irb/completion
+irb/frame
+irb/xmp
+jcode
+json
+json/add/core
+json/editor
+kconv
+logger
+mailread
+mathn
+matrix
+minitest/mock
+minitest/spec
+minitest/unit
+md5
+mkmf
+monitor
+mutex_m
+net/ftp
+net/ftptls
+net/http
+net/https
+net/imap
+net/pop
+net/protocol
+net/smtp
+net/telnet
+net/telnets
+nkf
+observer
+open-uri
+open3
+openssl
+optparse
+optparse/date
+optparse/shellwords
+optparse/time
+optparse/uri
+ostruct
+parsearg
+parsedate
+pathname
+ping
+pp
+prettyprint
+prime
+pstore
+pty
+racc/parser
+rake
+rake/classic_namespace
+rake/clean
+rake/gempackagetask
+rake/packagetask
+rake/rake_test_loader
+rake/rdoctask
+rake/runtest
+rake/tasklib
+rake/testtask
+rake/loaders/makefile
+rational
+rbconfig
+readbytes
+readline
+resolv-replace
+resolv
+rexml
+rinda/rinda
+rinda/tuplespace
+ripper
+ripper/filter
+ripper/lexer
+ripper/sexp
+rss
+rubygems
+rubygems/builder
+rubygems/command
+rubygems/command_manager
+rubygems/commands/build_command
+rubygems/commands/cert_command
+rubygems/commands/check_command
+rubygems/commands/cleanup_command
+rubygems/commands/contents_command
+rubygems/commands/dependency_command
+rubygems/commands/environment_command
+rubygems/commands/fetch_command
+rubygems/commands/generate_index_command
+rubygems/commands/help_command
+rubygems/commands/install_command
+rubygems/commands/list_command
+rubygems/commands/lock_command
+rubygems/commands/mirror_command
+rubygems/commands/outdated_command
+rubygems/commands/pristine_command
+rubygems/commands/query_command
+rubygems/commands/rdoc_command
+rubygems/commands/search_command
+rubygems/commands/server_command
+rubygems/commands/sources_command
+rubygems/commands/specification_command
+rubygems/commands/stale_command
+rubygems/commands/uninstall_command
+rubygems/commands/unpack_command
+rubygems/commands/update_command
+rubygems/commands/which_command
+rubygems/config_file
+rubygems/custom_require
+rubygems/defaults
+rubygems/dependency
+rubygems/dependency_installer
+rubygems/dependency_list
+rubygems/digest/digest_adapter
+rubygems/digest/md5
+rubygems/digest/sha1
+rubygems/digest/sha2
+rubygems/doc_manager
+rubygems/exceptions
+rubygems/ext
+rubygems/ext/builder
+rubygems/ext/configure_builder
+rubygems/ext/ext_conf_builder
+rubygems/ext/rake_builder
+rubygems/format
+rubygems/gem_openssl
+rubygems/gem_path_searcher
+rubygems/gem_runner
+rubygems/indexer
+rubygems/indexer/abstract_index_builder
+rubygems/indexer/latest_index_builder
+rubygems/indexer/master_index_builder
+rubygems/indexer/marshal_index_builder
+rubygems/indexer/quick_index_builder
+rubygems/install_update_options
+rubygems/installer
+rubygems/local_remote_options
+rubygems/old_format
+rubygems/package
+rubygems/package/f_sync_dir
+rubygems/package/tar_header
+rubygems/package/tar_input
+rubygems/package/tar_output
+rubygems/package/tar_reader
+rubygems/package/tar_reader/entry
+rubygems/package/tar_writer
+rubygems/platform
+rubygems/remote_fetcher
+rubygems/require_paths_builder
+rubygems/requirement
+rubygems/security
+rubygems/server
+rubygems/source_index
+rubygems/source_info_cache
+rubygems/source_info_cache_entry
+rubygems/spec_fetcher
+rubygems/specification
+rubygems/test_utilities
+rubygems/timer
+rubygems/uninstaller
+rubygems/user_interaction
+rubygems/validator
+rubygems/version
+rubygems/version_option
+rubyunit
+runit/assert
+runit/cui/testrunner
+runit/error
+runit/testcase
+runit/testresult
+runit/testsuite
+runit/topublic
+scanf
+sdbm
+securerandom
+set
+sha1
+shell
+shellwords
+singleton
+soap
+soap/attachment
+soap/baseData
+soap/element
+soap/encodingstyle/aspDotNetHandler
+soap/encodingstyle/handler
+soap/encodingstyle/literalHandler
+soap/encodingstyle/soapHandler
+soap/generator
+soap/header/handler
+soap/header/handlerset
+soap/header/simplehandler
+soap/httpconfigloader
+soap/mapping
+soap/mapping/factory
+soap/mapping/mapping
+soap/mapping/registry
+soap/mapping/rubytypeFactory
+soap/mapping/typeMap
+soap/mapping/wsdlencodedregistry
+soap/mapping/wsdlliteralregistry
+soap/marshal
+soap/mimemessage
+soap/netHttpClient
+soap/parser
+soap/processor
+soap/property
+soap/rpc/cgistub
+soap/rpc/driver
+soap/rpc/element
+soap/rpc/httpserver
+soap/rpc/proxy
+soap/rpc/router
+soap/rpc/rpc
+soap/rpc/soaplet
+soap/rpc/standaloneServer
+soap/soap
+soap/streamHandler
+soap/wsdlDriver
+socket
+stringio
+strscan
+sync
+syslog
+tempfile
+test/unit
+test/unit/assertions
+test/unit/testcase
+test/unit/autorunner
+test/unit/testresult
+test/unit/testsuite
+test/unit/ui/testrunnerutilities
+test/unit/ui/testrunnermediator
+test/unit/ui/console/testrunner
+test/unit/ui/fox/testrunner
+test/unit/ui/gtk/testrunner
+test/unit/ui/gtk2/testrunner
+test/unit/ui/tk/testrunner
+test/unit/util/observable
+thread
+thwait
+time
+timeout
+tk
+multi-tk
+remote-tk
+tcltklib
+tkafter
+tkbgerror
+tkcanvas
+tkclass
+tkconsole
+tkdialog
+tkentry
+tkfont
+tkmacpkg
+tkmenubar
+tkmngfocus
+tkpalette
+tkscrollbox
+tktext
+tkvirtevent
+tkwinpkg
+tk/after
+tk/autoload
+tk/bgerror
+tk/bindtag
+tk/button
+tk/canvas
+tk/canvastag
+tk/checkbutton
+tk/clipboard
+tk/clock
+tk/composite
+tk/console
+tk/dialog
+tk/encodedstr
+tk/entry
+tk/event
+tk/font
+tk/frame
+tk/grid
+tk/image
+tk/itemconfig
+tk/itemfont
+tk/kinput
+tk/label
+tk/labelframe
+tk/listbox
+tk/macpkg
+tk/menu
+tk/menubar
+tk/menuspec
+tk/message
+tk/mngfocus
+tk/msgcat
+tk/namespace
+tk/optiondb
+tk/optionobj
+tk/pack
+tk/package
+tk/palette
+tk/panedwindow
+tk/place
+tk/radiobutton
+tk/root
+tk/scale
+tk/scrollable
+tk/scrollbar
+tk/scrollbox
+tk/selection
+tk/spinbox
+tk/tagfont
+tk/text
+tk/textimage
+tk/textmark
+tk/texttag
+tk/textwindow
+tk/timer
+tk/toplevel
+tk/txtwin_abst
+tk/validation
+tk/variable
+tk/virtevent
+tk/winfo
+tk/winpkg
+tk/wm
+tk/xim
+tkextlib/ICONS
+tkextlib/blt
+tkextlib/bwidget
+tkextlib/itcl
+tkextlib/itk
+tkextlib/iwidgets
+tkextlib/pkg_checker
+tkextlib/tcllib
+tkextlib/tclx
+tkextlib/tile
+tkextlib/tkDND
+tkextlib/tkHTML
+tkextlib/tkimg
+tkextlib/tktable
+tkextlib/tktrans
+tkextlib/treectrl
+tkextlib/vu
+tkextlib/winico
+tkutil
+tmpdir
+tracer
+tsort
+ubygems
+un
+uri
+weakref
+webrick
+webrick/accesslog
+webrick/cgi
+webrick/compat
+webrick/config
+webrick/cookie
+webrick/htmlutils
+webrick/httputils
+webrick/httpauth
+webrick/httpauth/authenticator
+webrick/httpauth/basicauth
+webrick/httpauth/digestauth
+webrick/httpauth/htdigest
+webrick/httpauth/htgroup
+webrick/httpauth/htpasswd
+webrick/httpauth/userdb
+webrick/httpproxy
+webrick/httprequest
+webrick/httpresponse
+webrick/https
+webrick/httpserver
+webrick/httpservlet
+webrick/httpservlet/abstract
+webrick/httpservlet/cgihandler
+webrick/httpservlet/erbhandler
+webrick/httpservlet/filehandler
+webrick/httpservlet/prochandler
+webrick/httpstatus
+webrick/httputils
+webrick/httpversion
+webrick/log
+webrick/server
+webrick/ssl
+webrick/utils
+win32/registry
+win32/resolv
+win32ole
+wsdl
+wsdl/binding
+wsdl/data
+wsdl/definitions
+wsdl/documentation
+wsdl/import
+wsdl/importer
+wsdl/info
+wsdl/message
+wsdl/operation
+wsdl/operation_binding
+wsdl/param
+wsdl/parser
+wsdl/part
+wsdl/port
+wsdl/port_type
+wsdl/service
+wsdl/types
+wsdl/wsdl
+wsdl/xmlSchema/all
+wsdl/xmlSchema/annotation
+wsdl/xmlSchema/any
+wsdl/xmlSchema/attribute
+wsdl/xmlSchema/choice
+wsdl/xmlSchema/complexContent
+wsdl/xmlSchema/complexType
+wsdl/xmlSchema/content
+wsdl/xmlSchema/content
+wsdl/xmlSchema/data
+wsdl/xmlSchema/element
+wsdl/xmlSchema/enumeration
+wsdl/xmlSchema/import
+wsdl/xmlSchema/importer
+wsdl/xmlSchema/include
+wsdl/xmlSchema/length
+wsdl/xmlSchema/parser
+wsdl/xmlSchema/pattern
+wsdl/xmlSchema/schema
+wsdl/xmlSchema/sequence
+wsdl/xmlSchema/simpleContent
+wsdl/xmlSchema/simpleExtension
+wsdl/xmlSchema/simpleRestriction
+wsdl/xmlSchema/simpleType
+wsdl/xmlSchema/unique
+wsdl/xmlSchema/xsd2ruby
+wsdl/soap/address
+wsdl/soap/binding
+wsdl/soap/body
+wsdl/soap/cgiStubCreator
+wsdl/soap/classDefCreator
+wsdl/soap/classDefCreatorSupport
+wsdl/soap/clientSkeltonCreator
+wsdl/soap/complexType
+wsdl/soap/data
+wsdl/soap/definitions
+wsdl/soap/driverCreator
+wsdl/soap/element
+wsdl/soap/fault
+wsdl/soap/header
+wsdl/soap/headerfault
+wsdl/soap/mappingRegistryCreator
+wsdl/soap/methodDefCreator
+wsdl/soap/operation
+wsdl/soap/servantSkeltonCreator
+wsdl/soap/standaloneServerStubCreator
+wsdl/soap/wsdl2ruby
+xmlrpc
+xmlrpc/client
+xmlrpc/config
+xmlrpc/datetime
+xmlrpc/server
+xsd/codegen
+xsd
+xsd/datatypes
+xsd/datatypes1999
+xsd/xmlparser
+yaml
+yaml/store
+zlib
