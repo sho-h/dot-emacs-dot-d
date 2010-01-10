@@ -121,3 +121,12 @@
 (global-font-lock-mode 1 t)
 (autoload 'rd-mode "rd-mode" "major mode for ruby document formatter RD" t)
 (add-to-list 'auto-mode-alist '("\\.rd$" . rd-mode))
+
+; 自動でスペルチェックを行う。
+(setq ispell-personal-dictionary "~/.emacs.d/dict/ispell")
+; TODO: 以下のようにして、rd-mode の時のみ、flyspell-mode が有効になる
+; ようにしたいが、Emacs の起動が遅くなるのでそれに対処する。
+;(setq ispell-silently-savep t)
+;(add-hook 'rd-mode-hook
+;    '(lambda()
+;       (flyspell-mode t)))
