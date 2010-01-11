@@ -2,6 +2,7 @@ AAAA
 ABBR
 ABORT
 ABS
+ACCEPT
 ACCEPTCONN
 ACCESS
 ADD
@@ -17,6 +18,7 @@ AGENT
 AH
 AI
 AJD
+ALERT
 ALL
 ALLHOSTS
 ALT
@@ -68,11 +70,13 @@ AccessLog
 AccessLogError
 Address
 AddressRegex
+Addrinfo
 All
 AlreadyDefinedToken
 AmbigousOption
 AmbiguousArgument
 AmbiguousOption
+AncillaryData
 Annotation
 Any
 AnyAsElement
@@ -144,6 +148,7 @@ BINARY
 BINDING
 BINDTODEVICE
 BIT
+BITS
 BLOCK
 BLOCKSIZE
 BM
@@ -240,6 +245,7 @@ CHILDREN
 CIPHER
 CIPHERS
 CJD
+CLAMP
 CLASS
 CLAUSE
 CLEAN
@@ -262,11 +268,13 @@ COMPILING
 COMPLETION
 COMPONENT
 CONFIG
+CONFIRM
 CONFTEST
 CONNECT
 CONTAINABLE
 CONTENT
 COPYRIGHT
+CORK
 COUNT
 COUTFLAG
 CP
@@ -275,6 +283,7 @@ CR
 CRAM
 CRCError
 CREAT
+CREDENTIALS
 CRL
 CRLError
 CRLF
@@ -404,6 +413,7 @@ DEF
 DEFAULT
 DEFAULTDECL
 DEFAULTS
+DEFER
 DEFINE
 DEINDENT
 DELEGATING
@@ -424,6 +434,7 @@ DIGESTS
 DIGIT
 DIR
 DIRS
+DISCOVER
 DLtype
 DM
 DN
@@ -432,6 +443,7 @@ DNSThreadGroup
 DO
 DOC
 DOCTYPE
+DOCUMENTATION
 DOES
 DONT
 DONTROUTE
@@ -613,6 +625,7 @@ EBADSLT
 EBFONT
 EBUSY
 EC
+ECANCELED
 ECDH
 ECError
 ECHILD
@@ -642,6 +655,9 @@ EIO
 EISCONN
 EISDIR
 EISNAM
+EKEYEXPIRED
+EKEYREJECTED
+EKEYREVOKED
 EL
 ELEMENT
 ELEMENTDECL
@@ -654,6 +670,7 @@ ELIBSCN
 ELNRNG
 ELOOP
 EMACS
+EMEDIUMTYPE
 EMFILE
 EMLINK
 EMPTY
@@ -679,8 +696,10 @@ ENODATA
 ENODEV
 ENOENT
 ENOEXEC
+ENOKEY
 ENOLCK
 ENOLINK
+ENOMEDIUM
 ENOMEM
 ENOMSG
 ENONET
@@ -695,6 +714,7 @@ ENOTCONN
 ENOTDIR
 ENOTEMPTY
 ENOTNAM
+ENOTRECOVERABLE
 ENOTSOCK
 ENOTTY
 ENOTUNIQ
@@ -703,6 +723,8 @@ ENTITY
 ENTITYDECL
 ENTITYDEF
 ENTITYVALUE
+ENTRIES
+ENTRY
 ENUMERATEDTYPE
 ENUMERATION
 ENV
@@ -714,6 +736,7 @@ EOL
 EOPNOTSUPP
 EOR
 EOVERFLOW
+EOWNERDEAD
 EPERM
 EPFNOSUPPORT
 EPHEMERAL
@@ -734,6 +757,8 @@ ERESTART
 EROFS
 ERR
 ERROR
+ERRQUEUE
+ERbLight
 ESCAPE
 ESCAPED
 ESHUTDOWN
@@ -764,6 +789,7 @@ EXAMPLES
 EXCEPTION
 EXCEPTIONS
 EXCL
+EXCLUDE
 EXCLUSIVE
 EXDEV
 EXFULL
@@ -876,9 +902,12 @@ FAULT
 FIELDS
 FILE
 FILENAME
+FILLED
 FILTER
+FIN
 FINISHED
 FINITE
+FIXEDENCODING
 FLAG
 FLAGGED
 FLAGS
@@ -934,6 +963,7 @@ Filter
 Finalizer
 Find
 Fixnum
+FlagCountError
 Float
 FloatConstants
 FloatDomainError
@@ -1012,6 +1042,7 @@ HELP
 HEX
 HINFO
 HISTORY
+HKSCS
 HLT
 HMAC
 HMACError
@@ -1128,6 +1159,7 @@ IDENTITY
 IDNAME
 IDP
 IF
+IFNAMSIZ
 IGMP
 IGNORE
 IGNORECASE
@@ -1136,6 +1168,7 @@ IMAP
 IMASK
 IN
 INADDR
+INCLUDE
 INDENT
 INET
 INF
@@ -1153,6 +1186,7 @@ INSPECTING
 INSTALL
 INSTRUCTION
 INTERNAL
+INTS
 INVALID
 IO
 IOBuf
@@ -1218,6 +1252,7 @@ InitialTimeout
 InputMethod
 InputName
 InspectKey
+Inspector
 InstallCommand
 InstallError
 Installer
@@ -1259,6 +1294,9 @@ JULIAN
 Jacobian
 Job
 KEEPALIVE
+KEEPCNT
+KEEPIDLE
+KEEPINTVL
 KEY
 KOI
 KR
@@ -1356,6 +1394,7 @@ MANT
 MAP
 MAPPED
 MAPPING
+MARK
 MARKED
 MARSHAL
 MASK
@@ -1365,6 +1404,7 @@ MAXHOST
 MAXSEG
 MAXSERV
 MC
+MCAST
 MD
 MDC
 MDTM
@@ -1390,9 +1430,12 @@ MODULE
 MONTH
 MONTHNAMES
 MONTHS
+MORE
 MPostUnavailableError
 MS
+MSFILTER
 MSG
+MTU
 MULE
 MULTICAST
 MULTILINE
@@ -1515,6 +1558,7 @@ NKF
 NMTOKEN
 NMTOKENS
 NO
+NOATIME
 NOATTR
 NOCERTS
 NOCHAIN
@@ -1535,6 +1579,7 @@ NONEXISTENT
 NOP
 NOPRINTING
 NOSELECT
+NOSIGNAL
 NOSIGS
 NOSMIMECAP
 NOT
@@ -1557,6 +1602,7 @@ NUMBER
 NUMERICENTITY
 NUMERICHOST
 NUMERICSERV
+NUMS
 NXDomain
 NaN
 Name
@@ -1715,6 +1761,7 @@ PEEK
 PEER
 PEERCRED
 PEERNAME
+PER
 PERCENT
 PEREFERENCE
 PERMUTE
@@ -1722,12 +1769,14 @@ PF
 PI
 PKCS
 PKTINFO
+PKTOPTIONS
 PKey
 PKeyError
 PLATFORM
 PLATFORMS
 PLURAL
 PLUS
+PMTUDISC
 POOL
 POP
 POPAuthenticationError
@@ -1797,6 +1846,7 @@ PositiveIntegerLiteral
 PositiveMinInclusive
 Post
 PostUnavailableError
+PostgreSQL
 Precision
 PreconditionFailed
 Pretty
@@ -1834,6 +1884,7 @@ ProxyDelta
 ProxyDigestAuth
 ProxyMod
 PseudoPrimeGenerator
+PseudoStatus
 PublicInstanceMethodsInterface
 Published
 Publisher
@@ -1843,6 +1894,7 @@ QNAME
 QName
 QNameLiteral
 QUERY
+QUICKACK
 QUOTE
 QUOTED
 QUOTES
@@ -1880,6 +1932,7 @@ RE
 RECENT
 RECURSIVE
 RECVDSTOPTS
+RECVERR
 RECVHOPLIMIT
 RECVHOPOPTS
 RECVOPTS
@@ -1887,6 +1940,8 @@ RECVPKTINFO
 RECVRETOPTS
 RECVRTHDR
 RECVTCLASS
+RECVTOS
+RECVTTL
 REF
 REFERENCE
 REGEX
@@ -1919,12 +1974,14 @@ REXMLListener
 REXMLParser
 REXMLStreamParser
 RFC
+RIGHTS
 RIPEMD
 RMD
 ROLLBACK
 ROUND
 ROUNDS
 ROUTE
+ROUTER
 ROUTING
 RPAR
 RPATHFLAG
@@ -2039,11 +2096,13 @@ SAME
 SB
 SCANNER
 SCHEME
+SCM
 SCOPE
 SCRIPT
 SDBM
 SDBMError
 SE
+SEARCH
 SECOND
 SECONDS
 SECURITY
@@ -2063,8 +2122,10 @@ SH
 SHA
 SHIFT
 SHUT
-SIGN
+SIG
 SIGEXIT
+SIGN
+SIGNAL
 SIGPIPE
 SIGTERM
 SINGLE
@@ -2165,6 +2226,8 @@ SOCK
 SOCKET
 SOCKTYPE
 SOL
+SOMAXCONN
+SOURCE
 SOURCES
 SPACE
 SPECIAL
@@ -2212,11 +2275,14 @@ SUFFIX
 SUPDUP
 SUPDUPOUTPUT
 SUPPORTED
+SUPPORTS
 SUSP
 SY
 SYMBOL
+SYN
 SYNC
 SYNCH
+SYNCNT
 SYSCASE
 SYSTEM
 SYSTEMENTITY
@@ -2378,6 +2444,7 @@ TICKET
 TIME
 TIMES
 TIMESTAMP
+TIMESTAMPNS
 TIS
 TLS
 TLSv
@@ -2577,6 +2644,7 @@ TkfLBRACK
 TkfLPAREN
 TklBEGIN
 TklEND
+Tmpname
 Tms
 Token
 TokenDefinitions
@@ -2618,14 +2686,17 @@ TypedArrayFactory
 TypedStructFactory
 Types
 TypesName
+UAO
 UCS
 UDP
 UDPSize
 UDPSocket
+UDPSource
 UDPsocket
 UI
 UN
 UNAME
+UNBLOCK
 UNCAUGHT
 UNDEF
 UNDEFINED
@@ -2718,12 +2789,14 @@ VersionError
 VideotexString
 Void
 WAITALL
+WANT
 WARN
 WEBrick
 WEBrickServlet
 WHEN
 WIDE
 WILL
+WINDOW
 WINDOWS
 WKS
 WONT
@@ -2735,7 +2808,9 @@ WSDLDriver
 WSDLDriverFactory
 WSDLEncodedRegistry
 WSDLLiteralRegistry
+WaitReadable
 WaitTemplateEntry
+WaitWritable
 WeakRef
 WhichCommand
 Window
@@ -2830,6 +2905,7 @@ access
 accesslog
 accessor
 acct
+ace
 acl
 actions
 activate
@@ -2842,8 +2918,10 @@ added
 additional
 addr
 address
+addrinfo
 addstr
 adler
+afamily
 affine
 after
 age
@@ -2858,6 +2936,7 @@ all
 allocate
 allow
 alone
+alpha
 alternate
 always
 ambiguous
@@ -2869,6 +2948,7 @@ annotation
 answer
 any
 ap
+api
 apop
 app
 append
@@ -2939,6 +3019,7 @@ back
 backref
 backtick
 backtrace
+balance
 banner
 bar
 bare
@@ -3033,6 +3114,7 @@ canceled
 candidates
 cannot
 canonical
+canonname
 canvas
 canvastag
 capabilities
@@ -3067,6 +3149,7 @@ certificate
 certificates
 certs
 ces
+cfc
 cflags
 cgi
 cgiStubCreator
@@ -3133,6 +3216,7 @@ cmd
 cmdline
 cmds
 cmp
+cmsg
 code
 codegen
 codepoint
@@ -3278,6 +3362,7 @@ dbm
 dc
 dclone
 ddd
+de
 debug
 decl
 decode
@@ -3407,7 +3492,9 @@ duration
 dvar
 dyna
 dynamic
+eRuby
 each
+ec
 echo
 edit
 editor
@@ -3430,6 +3517,7 @@ embexpr
 embvar
 emit
 emitter
+emlist
 empty
 enable
 enc
@@ -3563,6 +3651,7 @@ fcall
 fcgi
 fcntl
 fd
+fdatasync
 fdiv
 fdom
 fdoy
@@ -3594,6 +3683,7 @@ fixed
 fixup
 flag
 flags
+flat
 flatten
 float
 flock
@@ -3678,6 +3768,7 @@ getnames
 getobj
 getoptlong
 getopts
+getpeereid
 getpeername
 getquota
 getquotaroot
@@ -3752,6 +3843,7 @@ home
 homepage
 hook
 host
+hostname
 hour
 hours
 href
@@ -3784,9 +3876,11 @@ identifier
 identifiers
 identify
 identity
+idle
 idlok
 if
 ifdef
+ifindex
 ifop
 ignore
 ignored
@@ -3827,6 +3921,7 @@ infinity
 inflate
 info
 inherit
+inheritable
 inherited
 init
 initialize
@@ -3929,6 +4024,7 @@ keywords
 kill
 kind
 kinput
+klass
 kw
 label
 labelframe
@@ -3967,11 +4063,15 @@ lib
 libpathflag
 library
 libs
+license
+licenses
 limit
 line
 lineno
 lines
+linger
 link
+linklocal
 linkname
 links
 lis
@@ -4059,6 +4159,7 @@ maxwidth
 maxx
 maxy
 mbchar
+mc
 mcall
 md
 mday
@@ -4112,6 +4213,8 @@ mod
 mode
 model
 models
+modern
+modifiable
 modified
 modifieer
 module
@@ -4133,6 +4236,7 @@ mu
 mul
 mult
 multicall
+multicast
 multipart
 multitask
 multitk
@@ -4177,6 +4281,7 @@ nodeName
 nodeType
 nodeValue
 nodelay
+nodelocal
 nodes
 nonblock
 nonce
@@ -4199,11 +4304,13 @@ now
 nowait
 nowrite
 nph
+nread
 ns
 nsec
 nth
 ntoh
 ntop
+nuke
 num
 number
 numerator
@@ -4243,6 +4350,7 @@ optional
 optiondb
 optionobj
 options
+optname
 optparse
 opts
 optype
@@ -4252,6 +4360,7 @@ order
 ordering
 ordinal
 org
+orglocal
 orig
 original
 os
@@ -4282,6 +4391,7 @@ parade
 parades
 param
 parameter
+parameters
 params
 paranoid
 paren
@@ -4317,9 +4427,11 @@ pending
 percent
 perform
 period
+permanent
 permitted
 permutation
 permute
+pfamily
 phase
 phrase
 pi
@@ -4328,6 +4440,7 @@ ping
 pipe
 pkcs
 pkg
+pktinfo
 place
 plain
 platform
@@ -4370,6 +4483,7 @@ prepare
 prepend
 preproc
 preprocess
+prerelease
 prerequisites
 pretty
 prettyprint
@@ -4473,6 +4587,7 @@ rank
 rassoc
 rating
 rational
+rationalize
 raw
 rawstring
 rb
@@ -4505,6 +4620,7 @@ readpartial
 readuntil
 ready
 real
+realdirpath
 really
 realm
 realpath
@@ -4520,6 +4636,7 @@ rectangular
 recursive
 recv
 recvfrom
+recvmsg
 redirect
 redirector
 redo
@@ -4647,6 +4764,7 @@ rules
 run
 runit
 runner
+running
 runtest
 runtime
 safe
@@ -4702,6 +4820,7 @@ send
 sendcmd
 sender
 sendmail
+sendmsg
 sent
 sep
 separator
@@ -4714,6 +4833,7 @@ servant
 servantSkeltonCreator
 serve
 server
+servername
 service
 services
 servlet
@@ -4782,6 +4902,7 @@ singleline
 singleton
 singular
 site
+sitelocal
 size
 sizeof
 skip
@@ -4809,7 +4930,9 @@ sock
 sockaddr
 socket
 socketpair
+sockets
 sockopt
+socktype
 sort
 source
 sources
@@ -4897,6 +5020,7 @@ subjects
 submission
 subnode
 subscribe
+subsec
 subset
 substitution
 subtitle
@@ -4906,6 +5030,7 @@ subwin
 succ
 succeed
 success
+sudo
 suite
 suites
 sum
@@ -4965,6 +5090,7 @@ tc
 tcllib
 tcltklib
 tclx
+tcp
 teardown
 tee
 tell
@@ -5049,6 +5175,7 @@ tmpdir
 tmpsrc
 to
 today
+todo
 toeuc
 tojis
 token
@@ -5103,11 +5230,13 @@ typecode
 typedef
 typeflag
 typemap
+typeof
 types
 tz
 ubygems
 ucmp
 uconv
+udp
 ui
 uid
 uidl
@@ -5149,6 +5278,7 @@ unqualified
 unscan
 unshift
 unsigned
+unspecified
 unsubscribe
 untaint
 until
@@ -5227,6 +5357,7 @@ wednesday
 weeknum
 weight
 welcome
+wget
 what
 when
 which
