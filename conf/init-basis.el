@@ -150,3 +150,10 @@
     (vertical-motion n)
     (move-to-column (+ (current-column) cur-col)))
   (run-hooks 'auto-line-hook))
+
+; M-* で kakasi コマンドを使ってカーソル位置にある漢字の読みを
+; minibuffer に表示する。
+(defun display-ruby-on-minibuffer ()
+  (interactive)
+  (shell-command (concat "echo \"" (current-word) "\" | kakasi -JH")))
+(global-set-key "\M-*" 'display-ruby-on-minibuffer)
