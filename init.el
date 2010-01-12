@@ -18,6 +18,7 @@
 (load "init-svn")
 (load "init-whitespace")
 (load "init-kill-summary")
+(load "init-swbuff")
 (load "init-auto-install")
 (load "anything-startup")
 (load "init-anything-rurema")
