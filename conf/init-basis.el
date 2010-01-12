@@ -157,3 +157,9 @@
   (interactive)
   (shell-command (concat "echo \"" (current-word) "\" | kakasi -JH")))
 (global-set-key "\M-*" 'display-ruby-on-minibuffer)
+
+; cc-mode、ruby-mode、rd-mode でタブと全角スペースの見た目をわかりやす
+; いものにする。
+; c.f. http://homepage3.nifty.com/satomii/software/elisp.ja.html
+(require 'jaspace)
+(setq jaspace-modes '(cc-mode ruby-mode rd-mode))

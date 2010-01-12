@@ -26,10 +26,6 @@
 (load "init-desktop")
 (load "dired-setup")
 
-; タブと全角スペースの見た目をわかりやすいものにする。
-; c.f. http://homepage3.nifty.com/satomii/software/elisp.ja.html
-(require 'jaspace)
-
 ; 日本語のインクリメンタル検索を行う。
 ; migemo と一緒にインストールできる。
 (load "migemo/migemo")
