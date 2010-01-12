@@ -17,6 +17,7 @@
 (load "init-eshell")
 (load "init-svn")
 (load "init-whitespace")
+(load "init-kill-summary")
 (load "init-auto-install")
 (load "anything-startup")
 (load "init-anything-rurema")
