@@ -162,4 +162,4 @@
 ; いものにする。
 ; c.f. http://homepage3.nifty.com/satomii/software/elisp.ja.html
 (require 'jaspace)
-(setq jaspace-modes '(cc-mode ruby-mode rd-mode))
+(setq jaspace-modes '(cc-mode ruby-mode rd-mode text-mode))
