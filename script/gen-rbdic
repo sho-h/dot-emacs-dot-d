@@ -73,7 +73,8 @@ c_yoyakugo = [
 ]
 
 # require 済みのクラスを列挙する。
-classes = ObjectSpace.each_object(Class).collect
+classes = (ObjectSpace.each_object(Class).to_a +
+           ObjectSpace.each_object(Module).to_a).uniq
 
 # 列挙したクラスからメソッド名や定数を列挙する。
 methods = []
