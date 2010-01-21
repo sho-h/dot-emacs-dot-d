@@ -31,7 +31,9 @@
                                             eshell-mode-hook
                                             w3-mode-hook
                                             mime-view-mode-hook
-                                            diff-mode-hook)))
+                                            diff-mode-hook
+                                            riece-channel-mode-hook
+                                            riece-others-mode-hook)))
 
     (mapcar '(lambda (mode-hook)
                (add-hook mode-hook 'turn-off-show-trailing-whitespace))
