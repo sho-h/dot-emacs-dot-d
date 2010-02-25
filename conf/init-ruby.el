@@ -47,3 +47,10 @@
         (insert (format "# -*- coding: %s -*-" encoding))))))
 
 (add-hook 'before-save-hook 'ruby-insert-magic-comment-if-needed)
+
+; end に対応する行をわかりやすくする。
+; c.f. http://d.hatena.ne.jp/khiker/20071130/emacs_ruby_block
+(require 'ruby-block)
+(ruby-block-mode t)
+; 対応する行をオーバレイ表示でハイライトする。
+(setq ruby-block-highlight-toggle 'overlay)
