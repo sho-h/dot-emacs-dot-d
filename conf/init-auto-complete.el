@@ -32,11 +32,11 @@
   ; * ac-source-words-in-buffer
   (setq-default ac-sources '(ac-source-filename ac-source-words-in-buffer))
 
-  ; 自動補完を有効にする。
-  (setq ac-auto-start t)
+  ; 自動補完を無効にする。
+  (setq ac-auto-start nil)
 
-  ; 3文字目から自動補完を有効にしたい場合。
-  ;(setq ac-auto-start 3)
+  ; 3文字目から自動補完を有効にする。
+  (setq ac-auto-start 3)
 
   ; TODO: EmacsWiki にある以下の設定例について確認して有効にするかどう
   ; かを決める。Software Design 2010年 2月号で紹介予定なのかも。
