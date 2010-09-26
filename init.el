@@ -24,6 +24,7 @@
 (load "init-anything-rurema")
 (load "init-anything-rcodetools")
 (load "init-auto-complete")
+(load "init-rsense")
 (load "init-one-key")
 (load "init-desktop")
 (load "dired-setup")
