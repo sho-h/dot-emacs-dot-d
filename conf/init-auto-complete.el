@@ -10,7 +10,9 @@
 ;
 
 (when (require 'auto-complete nil t)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict.auto-complete/")
   (require 'auto-complete-config)
+  (ac-config-default)
 
   ; グローバルで auto-complete を使用する。
   (global-auto-complete-mode t)
