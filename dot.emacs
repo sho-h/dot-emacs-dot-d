@@ -17,7 +17,6 @@
 (load "init-eshell")
 (load "init-svn")
 (load "init-whitespace")
-(load "init-kill-summary")
 (load "init-swbuff")
 (load "init-auto-install")
 (load "anything-startup")
@@ -39,3 +38,9 @@
 ; * n キー押下で次のページ
 ; * p キー押下で前のページ
 (require 'doc-view)
+
+; TODO: 設定が増えるようであれば、別のファイルにする。
+; kill-ring の表示に anything を使用する。
+(global-set-key "\M-y" 'anything-show-kill-ring)
+; 5文字以上を補完の対象とする。
+(setq anything-kill-ring-threshold 5)
