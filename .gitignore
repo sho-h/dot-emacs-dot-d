@@ -3,3 +3,4 @@ auto-install
 elisp
 *~
 session.*
+ac-comphist.dat
