@@ -10,6 +10,10 @@
 (setq-default c-basic-offset 2)
 
 (when (load "js2" t)
+  ; 行末の空白を削除しない。C-iの度にインデントを変更しない。
+  (setq js2-cleanup-whitespace nil
+        js2-bounce-indent-flag nil)
+
   (defun indent-and-back-to-indentation ()
     (interactive)
     (indent-for-tab-command)
