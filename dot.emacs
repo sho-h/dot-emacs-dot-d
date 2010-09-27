@@ -44,3 +44,5 @@
 (global-set-key "\M-y" 'anything-show-kill-ring)
 ; 5文字以上を補完の対象とする。
 (setq anything-kill-ring-threshold 5)
+
+(load "init-work")
