@@ -5,3 +5,4 @@ elisp
 session.*
 ac-comphist.dat
 conf/init-work.el
+dict.auto-complete
